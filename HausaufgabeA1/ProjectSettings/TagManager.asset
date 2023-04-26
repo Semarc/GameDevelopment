@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Raffaela
+    uniqueID: 2836047419
+    locked: 0
+  - name: Sheldon
+    uniqueID: 2453480481
+    locked: 0
