@@ -47,3 +47,36 @@ TagManager:
   - name: Sheldon
     uniqueID: 2453480481
     locked: 0
+  - name: Hive
+    uniqueID: 3015235475
+    locked: 0
+  - name: Leon
+    uniqueID: 3321181751
+    locked: 0
+  - name: Shroom
+    uniqueID: 1687781893
+    locked: 0
+  - name: Sun
+    uniqueID: 2872113143
+    locked: 0
+  - name: Bush
+    uniqueID: 3011824819
+    locked: 0
+  - name: Flower
+    uniqueID: 2843964283
+    locked: 0
+  - name: Snowman
+    uniqueID: 3754813917
+    locked: 0
+  - name: Flagpole
+    uniqueID: 1430027059
+    locked: 0
+  - name: Bruno
+    uniqueID: 1199839933
+    locked: 0
+  - name: Cloud
+    uniqueID: 1525478291
+    locked: 0
+  - name: Frederick
+    uniqueID: 3180773941
+    locked: 0
