@@ -6,12 +6,37 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+	private static readonly KeyCode[] keyCodes = {
+		KeyCode.Alpha0,
+		KeyCode.Keypad0,
+		KeyCode.Alpha1,
+		KeyCode.Keypad1,
+		KeyCode.Alpha2,
+		KeyCode.Keypad2,
+		KeyCode.Alpha3,
+		KeyCode.Keypad3,
+		//KeyCode.Alpha4,
+		//KeyCode.Keypad4,
+		//KeyCode.Alpha5,
+		//KeyCode.Keypad5,
+		//KeyCode.Alpha6,
+		//KeyCode.Keypad6,
+		//KeyCode.Alpha7,
+		//KeyCode.Keypad7,
+		//KeyCode.Alpha8,
+		//KeyCode.Keypad8,
+		//KeyCode.Alpha9,
+		//KeyCode.Keypad9,
+	 };
 
 	// Speed of the character
 	[SerializeField] int speedIndex = 0;
 
 	[SerializeField] float[] possibleSpeeds = {5f, 10f, 20f };
 
+	[SerializeField] int MyCharacterIndex = 0;
+
+	static int CurrentCharacterIndex;
 
 	SpriteRenderer[] sr;
 
@@ -25,7 +50,30 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update()
 	{
+		for (int i = 0; i < keyCodes.Length; i++)
+		{
+			if (Input.GetKeyDown(keyCodes[i]))
+			{
+				int numberPressed = Mathf.FloorToInt(i/2);
+				CurrentCharacterIndex = numberPressed;
+			}
+		}
+		if (MyCharacterIndex != CurrentCharacterIndex)
+		{
+			return;
+		}
+
 		Vector3 moveVector = Vector3.zero;
+
+
+		for (int i = 0; i < keyCodes.Length; i++)
+		{
+			if (Input.GetKeyDown(keyCodes[i]))
+			{
+				int numberPressed = Mathf.FloorToInt(i/2);
+				CurrentCharacterIndex = numberPressed;
+			}
+		}
 
 		// Get input and save state in moveVector
 		if (Input.GetKey(KeyCode.W)) moveVector.y = 1;
@@ -43,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
 				renderer.color = Random.ColorHSV();
 			}
 		}
+
 
 		// Normalize vector, so that magnitude for diagonal movement is also 1
 		moveVector.Normalize();
