@@ -58,9 +58,14 @@ public class PlayerMovement : MonoBehaviour
 				CurrentCharacterIndex = numberPressed;
 			}
 		}
+
 		if (MyCharacterIndex != CurrentCharacterIndex)
 		{
 			return;
+		}
+		else
+		{
+			CameraFollower.target = this.transform;
 		}
 
 		Vector3 moveVector = Vector3.zero;
@@ -129,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 		//}
 	}
 
-	private Bounds GetAllChildBounds()
+	public Bounds GetAllChildBounds()
 	{
 		if (sr.Length == 0)
 			return new Bounds();
