@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 			if (Input.GetKeyDown(keyCodes[i]))
 			{
 				int numberPressed = Mathf.FloorToInt(i/2);
-				CurrentCharacterIndex = numberPressed;
+				CurrentCharacterIndex = numberPressed+1;
 			}
 		}
 
@@ -69,16 +69,6 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		Vector3 moveVector = Vector3.zero;
-
-
-		for (int i = 0; i < keyCodes.Length; i++)
-		{
-			if (Input.GetKeyDown(keyCodes[i]))
-			{
-				int numberPressed = Mathf.FloorToInt(i/2);
-				CurrentCharacterIndex = numberPressed;
-			}
-		}
 
 		// Get input and save state in moveVector
 		if (Input.GetKey(KeyCode.W)) moveVector.y = 1;
@@ -121,17 +111,6 @@ public class PlayerMovement : MonoBehaviour
 			transform.position = new Vector3(transform.position.x - 2 * (transform.position.x - GetAllChildBounds().center.x), transform.position.y);
 			transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y);
 		}
-
-
-		//Debug.Log("Update");
-		//foreach (SpriteRenderer renderer in sr)
-		//{
-		//	Debug.Log(renderer.gameObject.name);
-		//	if (moveVector.x < 0)
-		//		renderer.flipX = true;
-		//	else if (moveVector.x > 0)
-		//		renderer.flipX = false;
-		//}
 	}
 
 	public Bounds GetAllChildBounds()
