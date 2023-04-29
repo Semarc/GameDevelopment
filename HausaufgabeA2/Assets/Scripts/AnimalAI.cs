@@ -17,9 +17,8 @@ public class AnimalAI : MonoBehaviour
 	{
 		while (true)
 		{
-			DanceMoves.AIDanceMoves[Random.Range(0, DanceMoves.AIDanceMoves.Length - 1)](transform);
+			StartCoroutine(DanceMoves.AIDanceMoves[Random.Range(0, DanceMoves.AIDanceMoves.Length - 1)](transform));
 			yield return new WaitForSeconds(Random.Range(1f, 4f));
 		}
 	}
-
 }

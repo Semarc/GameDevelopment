@@ -93,10 +93,9 @@ public class PlayerInputs : MonoBehaviour
 				}
 				if (Input.GetKeyDown(item.Key))
 				{
-					DanceMoves.PlayerDanceMoves[item.Value](transform);
+					StartCoroutine(DanceMoves.PlayerDanceMoves[item.Value](transform));
 				}
 			}
-
 		}
 
 
