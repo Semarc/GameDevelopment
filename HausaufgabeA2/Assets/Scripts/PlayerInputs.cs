@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -11,7 +10,7 @@ public class PlayerInputs : MonoBehaviour
 
 	private readonly Dictionary<KeyCode, char> letterKeys = new();
 
-	private readonly Dictionary<KeyCode, char> numberKeys = new();
+	private readonly Dictionary<KeyCode, int> numberKeys = new();
 
 	// Speed of the character
 	[SerializeField] int speedIndex = 0;
@@ -37,6 +36,17 @@ public class PlayerInputs : MonoBehaviour
 			letterKeys.Add((KeyCode)i, (char)i);
 		}
 
+		for (int i = 0; i < 10; i++)
+		{
+			numberKeys.Add((KeyCode)(i + 48), i);
+			numberKeys.Add((KeyCode)(i + 256), i);
+		}
+
+		foreach (var item in numberKeys)
+		{
+			Debug.Log(item.ToString());
+		}
+
 		cheatCodes = new Dictionary<string, Action>()
 		{
 			{ "NINJA", cheatNinja },
@@ -58,20 +68,43 @@ public class PlayerInputs : MonoBehaviour
 			}
 		}
 
-		//Activate The Cheats
-		foreach (KeyValuePair<string, Action> item in cheatCodes)
+		if (!IsDancing)
 		{
-			if (enteredKeys.Contains(item.Key))
+
+			//Activate The Cheats
+			foreach (KeyValuePair<string, Action> item in cheatCodes)
 			{
-				item.Value();
-				enteredKeys = string.Empty;
-				break;
+				if (enteredKeys.Contains(item.Key))
+				{
+					item.Value();
+					enteredKeys = string.Empty;
+					break;
+				}
 			}
+
+			InputMoveCharacter();
+
+			//Activate DanceMoves
+			foreach (KeyValuePair<KeyCode, int> item in numberKeys)
+			{
+				if (item.Value >= DanceMoves.PlayerDanceMoves.Length)
+				{
+					break;
+				}
+				if (Input.GetKeyDown(item.Key))
+				{
+					DanceMoves.PlayerDanceMoves[item.Value](transform);
+				}
+			}
+
 		}
 
-		if (!IsDancing) { InputMoveCharacter(); }
 
 
+		if (Input.GetKeyDown(KeyCode.F))
+		{
+			SpawnNewLight();
+		}
 
 
 
@@ -133,6 +166,11 @@ public class PlayerInputs : MonoBehaviour
 		}
 		//Debug.Log(bounds);
 		return bounds;
+	}
+
+	private void SpawnNewLight()
+	{
+
 	}
 
 	#region Cheats
