@@ -7,18 +7,18 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	private static readonly KeyCode[] keyCodes = {
-		KeyCode.Alpha0,
-		KeyCode.Keypad0,
+		//KeyCode.Alpha0,
+		//KeyCode.Keypad0,
 		KeyCode.Alpha1,
 		KeyCode.Keypad1,
 		KeyCode.Alpha2,
 		KeyCode.Keypad2,
 		KeyCode.Alpha3,
 		KeyCode.Keypad3,
-		//KeyCode.Alpha4,
-		//KeyCode.Keypad4,
-		//KeyCode.Alpha5,
-		//KeyCode.Keypad5,
+		KeyCode.Alpha4,
+		KeyCode.Keypad4,
+		KeyCode.Alpha5,
+		KeyCode.Keypad5,
 		//KeyCode.Alpha6,
 		//KeyCode.Keypad6,
 		//KeyCode.Alpha7,
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
 	[SerializeField] int MyCharacterIndex = 0;
 
-	static int CurrentCharacterIndex;
+	static int CurrentCharacterIndex = 1;
 
 	SpriteRenderer[] sr;
 
