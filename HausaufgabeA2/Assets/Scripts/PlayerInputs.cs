@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerInputs : MonoBehaviour
 {
 	#region Initilisation and Fields
 
