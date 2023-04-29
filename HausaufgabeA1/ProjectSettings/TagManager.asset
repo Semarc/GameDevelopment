@@ -47,9 +47,6 @@ TagManager:
   - name: Cloud
     uniqueID: 1525478291
     locked: 0
-  - name: Sun
-    uniqueID: 2872113143
-    locked: 0
   - name: Fence
     uniqueID: 2146895429
     locked: 0
@@ -76,6 +73,9 @@ TagManager:
     locked: 0
   - name: SheldonAndRaffaela
     uniqueID: 2453480481
+    locked: 0
+  - name: Sun
+    uniqueID: 2872113143
     locked: 0
   - name: Cactus
     uniqueID: 3508611791
