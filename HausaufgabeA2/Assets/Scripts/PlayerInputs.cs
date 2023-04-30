@@ -320,9 +320,9 @@ public class PlayerInputs : MonoBehaviour, IDancer
 			{
 				item.SetSprite(PusheenSprite);
 			}
+			
 		}
 		PusheenCheatActive = !PusheenCheatActive;
-
 	}
 	#endregion
 }
