@@ -1843,6 +1843,7 @@ MonoBehaviour:
   - 20
   discoLight: {fileID: 8964610244390865172, guid: e91529ced4be82b458776c2402ebe178, type: 3}
   dogeSprite: {fileID: 21300000, guid: 0d4f0a4b68920f7459fde8ad2d50ea20, type: 3}
+  PusheenSprite: {fileID: 21300000, guid: e717b4fd2b2aff941ba2d4350e5b42c0, type: 3}
 --- !u!4 &743115178
 Transform:
   m_ObjectHideFlags: 0
@@ -1851,7 +1852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743115175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -0.03, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

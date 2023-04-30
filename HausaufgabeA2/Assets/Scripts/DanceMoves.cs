@@ -11,7 +11,7 @@ public static class DanceMoves
         RotateDancerBackwards,
         Schiffschaukel,
         Jiggle,
-        Scalechange
+        FirstScalechange
 	};
 	public static Func<IDancer, IEnumerator>[] PlayerDanceMoves  = new Func<IDancer, IEnumerator>[]
 	{
@@ -19,7 +19,7 @@ public static class DanceMoves
         RotateDancerBackwards,
         Schiffschaukel,
         Jiggle,
-        Scalechange
+        FirstScalechange
 	};
 
 
@@ -151,12 +151,32 @@ public static class DanceMoves
         Dancer.IsDancing = false;
     }
 
-    private static IEnumerator Scalechange(IDancer Dancer)
+    private static IEnumerator FirstScalechange(IDancer Dancer)
     {
         float TotalScale = 0;
-        while (TotalScale < 0.5)
+        while (TotalScale < 1)
+        {
+            float Addition = Time.deltaTime * 1;
+
+			Dancer.transform.localScale = new Vector3 (Dancer.transform.localScale.x + Addition, Dancer.transform.localScale.y + Addition, 1);
+
+            TotalScale += Addition;
+
+            yield return null;
+        }
+        while (TotalScale > -1)
         {
             float Addition = Time.deltaTime * 2;
+
+			Dancer.transform.localScale = new Vector3 (Dancer.transform.localScale.x - Addition, Dancer.transform.localScale.y - Addition, 1);
+
+            TotalScale -= Addition;
+
+            yield return null;
+        }
+        while (TotalScale < 0)
+        {
+            float Addition = Time.deltaTime * 1;
 
 			Dancer.transform.localScale = new Vector3 (Dancer.transform.localScale.x + Addition, Dancer.transform.localScale.y + Addition, 1);
 

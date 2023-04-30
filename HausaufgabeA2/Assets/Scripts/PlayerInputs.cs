@@ -32,6 +32,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 	private bool NinjaCheatActive = false;
 	private bool SquidgameCheatActive = false;
 	private bool DrunkCheatActive = false;
+	private bool PusheenCheatActive = false;
 
 	public bool IsDancing { get; set; } = false;
 	string enteredKeys = string.Empty;
@@ -40,6 +41,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 
 	[SerializeField] private GameObject discoLight;
 	[SerializeField] private Sprite dogeSprite;
+	[SerializeField] private Sprite PusheenSprite;
 	private AnimalAI[] NPCDancers;
 
 	// Cache the SpriteRenderer (could also be done in Start())
@@ -63,6 +65,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 			{ "DOGE", cheatDoge },
 			{ "SQUIDGAME", cheatSquidgame},
 			{ "DRUNK", cheatDrunk},
+			{ "PUSHEEN", cheatPusheen},
 		};
 
 		NPCDancers = HelperFunctions.GetComponentsFromObjects<AnimalAI>(Constants.NPCDancerTagName);
@@ -233,6 +236,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 		}
 		DogeCheatActive = !DogeCheatActive;
 	}
+
 	private void cheatSquidgame()
 	{
 		SquidgameCheatActive = true;
@@ -301,5 +305,24 @@ public class PlayerInputs : MonoBehaviour, IDancer
 		}
 	}
 
+	private void cheatPusheen()
+	{
+		if (PusheenCheatActive)
+		{
+			foreach (AnimalAI item in NPCDancers)
+			{
+				item.ResetSprite();
+			}
+		}
+		else
+		{
+			foreach (AnimalAI item in NPCDancers)
+			{
+				item.SetSprite(PusheenSprite);
+			}
+		}
+		PusheenCheatActive = !PusheenCheatActive;
+
+	}
 	#endregion
 }
