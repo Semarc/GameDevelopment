@@ -10,17 +10,19 @@ public static class DanceMoves
 		RotateDancer,
         RotateDancerBackwards,
         Schiffschaukel,
-        Jiggle
+        Jiggle,
+        Scalechange
 	};
 	public static Func<IDancer, IEnumerator>[] PlayerDanceMoves  = new Func<IDancer, IEnumerator>[]
 	{
 		RotateDancer,
         RotateDancerBackwards,
         Schiffschaukel,
-        Jiggle
+        Jiggle,
+        Scalechange
 	};
 
-	//scale for growing
+
 	private static IEnumerator RotateDancer(IDancer Dancer)
     {
         float TotalRotation = 0;
@@ -148,4 +150,21 @@ public static class DanceMoves
 		Dancer.transform.rotation = Quaternion.identity;
         Dancer.IsDancing = false;
     }
+
+    private static IEnumerator Scalechange(IDancer Dancer)
+    {
+        float TotalScale = 0;
+        while (TotalScale < 0.5)
+        {
+            float Addition = Time.deltaTime * 2;
+
+			Dancer.transform.localScale = new Vector3 (Dancer.transform.localScale.x + Addition, Dancer.transform.localScale.y + Addition, 1);
+
+            TotalScale += Addition;
+
+            yield return null;
+        }
+		Dancer.transform.localScale = Vector3.one;
+		Dancer.IsDancing = false;
+	}
 }
