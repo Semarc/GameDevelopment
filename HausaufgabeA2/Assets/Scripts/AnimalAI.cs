@@ -63,7 +63,16 @@ public class AnimalAI : MonoBehaviour, IDancer
 	}
 	public void FadeAndDestroy()
 	{
-#warning Todo
-		Destroy(gameObject);
+		StartCoroutine(FadeAndDestroyCoroutine());
+
+		IEnumerator FadeAndDestroyCoroutine()
+		{
+			while (sr.color.a > 0)
+			{
+				sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a - Time.deltaTime);
+				yield return null;
+			}
+			Destroy(gameObject);
+		}
 	}
 }

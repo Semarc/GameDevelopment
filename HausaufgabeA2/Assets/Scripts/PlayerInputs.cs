@@ -8,6 +8,7 @@ using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
+using System.Xml.Schema;
 
 public class PlayerInputs : MonoBehaviour, IDancer
 {
@@ -30,6 +31,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 	private bool DogeCheatActive = false;
 	private bool NinjaCheatActive = false;
 	private bool SquidgameCheatActive = false;
+	private bool DrunkCheatActive = false;
 
 	public bool IsDancing { get; set; } = false;
 	string enteredKeys = string.Empty;
@@ -60,6 +62,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 			{ "NINJA", cheatNinja },
 			{ "DOGE", cheatDoge },
 			{ "SQUIDGAME", cheatSquidgame},
+			{ "DRUNK", cheatDrunk},
 		};
 
 		NPCDancers = HelperFunctions.GetComponentsFromObjects<AnimalAI>(Constants.NPCDancerTagName);
@@ -201,12 +204,12 @@ public class PlayerInputs : MonoBehaviour, IDancer
 		if (NinjaCheatActive)
 		{
 			sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
-			SpeedMultiplier = 1;
+			SpeedMultiplier *= 2;
 		}
 		else
 		{
 			sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
-			SpeedMultiplier = 0.5f;
+			SpeedMultiplier *= 0.5f;
 		}
 		NinjaCheatActive = !NinjaCheatActive;
 	}
@@ -273,6 +276,28 @@ public class PlayerInputs : MonoBehaviour, IDancer
 					item.RedLight = RedLight;
 				}
 			}
+		}
+	}
+
+	private void cheatDrunk()
+	{
+		DrunkCheatActive = !DrunkCheatActive;
+
+		if (DrunkCheatActive)
+		{
+			StartCoroutine(DrunkCoroutine());
+		}
+		IEnumerator DrunkCoroutine()
+		{
+			SpeedMultiplier *= 0.75f;
+			Quaternion CurrentRotation = Quaternion.identity;
+			while (DrunkCheatActive)
+			{
+				CurrentRotation = Quaternion.Euler(0, 0, CurrentRotation.eulerAngles.z + 180 * Time.deltaTime * Random.Range(0.5f, 2f));
+				transform.position += CurrentRotation * Vector3.up * possibleSpeeds[speedIndex] * SpeedMultiplier * Time.deltaTime;
+				yield return null;
+			}
+			SpeedMultiplier *= 1f / 0.75f;
 		}
 	}
 
