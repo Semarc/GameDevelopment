@@ -1,5 +1,3 @@
-using System.Net.Sockets;
-
 using UnityEngine;
 
 public class CameraFollower : MonoBehaviour
@@ -27,12 +25,12 @@ public class CameraFollower : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.O))
 		{
 			Color.RGBToHSV(BackgroundSR.color, out float H, out float S, out float V);
-			BackgroundSR.color = Color.HSVToRGB(H, S, V + 0.1f);
+			BackgroundSR.color = Color.HSVToRGB(H, S, V - 0.1f);
 		}
 		if (Input.GetKeyDown(KeyCode.P))
 		{
 			Color.RGBToHSV(BackgroundSR.color, out float H, out float S, out float V);
-			BackgroundSR.color = Color.HSVToRGB(H, S, V - 0.1f);
+			BackgroundSR.color = Color.HSVToRGB(H, S, V + 0.1f);
 		}
 	}
 }

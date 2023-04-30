@@ -1,14 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
-using Random = UnityEngine.Random;
-
 using UnityEngine;
-using System.Collections;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
-using System.Xml.Schema;
+
+using Random = UnityEngine.Random;
 
 public class PlayerInputs : MonoBehaviour, IDancer
 {
@@ -319,8 +316,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 			foreach (AnimalAI item in NPCDancers)
 			{
 				item.SetSprite(PusheenSprite);
-			}
-			
+			}			
 		}
 		PusheenCheatActive = !PusheenCheatActive;
 	}
