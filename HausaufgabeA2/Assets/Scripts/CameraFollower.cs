@@ -8,10 +8,10 @@ public class CameraFollower : MonoBehaviour
 	{
 		float temp = transform.position.z;
 
-		PlayerInputs playerMovement =    target.GetComponent<PlayerInputs>();
+		PlayerInputs playerMovement = target.GetComponent<PlayerInputs>();
 
 		transform.position = Vector3.Lerp(
-			transform.position, playerMovement.GetAllChildBounds().center,
+			transform.position, playerMovement.Bounds.center,
 			Time.deltaTime * smooth);
 		transform.position = new Vector3(transform.position.x, transform.position.y, temp);
 	}

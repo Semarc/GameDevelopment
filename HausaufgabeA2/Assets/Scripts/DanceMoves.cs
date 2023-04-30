@@ -5,14 +5,14 @@ using System.Collections;
 
 public static class DanceMoves
 {
-	public static Func<Transform, IEnumerator>[] AIDanceMoves = new Func<Transform, IEnumerator>[]
+	public static Func<IDancer, IEnumerator>[] AIDanceMoves = new Func<IDancer, IEnumerator>[]
 	{
 		RotateDancer,
         RotateDancerBackwards,
         Schiffschaukel,
         Jiggle
 	};
-	public static Func<Transform, IEnumerator>[] PlayerDanceMoves  = new Func<Transform, IEnumerator>[]
+	public static Func<IDancer, IEnumerator>[] PlayerDanceMoves  = new Func<IDancer, IEnumerator>[]
 	{
 		RotateDancer,
         RotateDancerBackwards,
@@ -21,46 +21,48 @@ public static class DanceMoves
 	};
 
 	//scale for growing
-	private static IEnumerator RotateDancer(Transform Dancer)
+	private static IEnumerator RotateDancer(IDancer Dancer)
     {
         float TotalRotation = 0;
         while (TotalRotation < 360)
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z + Addition);
+			Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z + Addition);
 
             TotalRotation += Addition;
 
             yield return null;
         }
-        Dancer.rotation = Quaternion.identity;
-    }
+		Dancer.transform.rotation = Quaternion.identity;
+		Dancer.IsDancing = false;
+	}
 
-    private static IEnumerator RotateDancerBackwards(Transform Dancer)
+    private static IEnumerator RotateDancerBackwards(IDancer Dancer)
     {
         float TotalRotation = -1;
         while (TotalRotation > -360)
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z - Addition);
+            Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z - Addition);
 
             TotalRotation -= Addition;
 
             yield return null;
         }
-        Dancer.rotation = Quaternion.identity;
-    }
+        Dancer.transform.rotation = Quaternion.identity;
+		Dancer.IsDancing = false;
+	}
 
-    private static IEnumerator Schiffschaukel(Transform Dancer)
+    private static IEnumerator Schiffschaukel(IDancer Dancer)
     {
         float TotalRotation = 0;
         while (TotalRotation < 90)
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z + Addition);
+            Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z + Addition);
 
             TotalRotation += Addition;
 
@@ -70,7 +72,7 @@ public static class DanceMoves
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z - Addition);
+            Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z - Addition);
 
             TotalRotation -= Addition;
 
@@ -80,23 +82,24 @@ public static class DanceMoves
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z + Addition);
+            Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z + Addition);
 
             TotalRotation += Addition;
 
             yield return null;
         }
-        Dancer.rotation = Quaternion.identity;
-    }
+        Dancer.transform.rotation = Quaternion.identity;
+		Dancer.IsDancing = false;
+	}
 
-    private static IEnumerator Jiggle(Transform Dancer)
+    private static IEnumerator Jiggle(IDancer Dancer)
     {
         float TotalRotation = 0;
         while (TotalRotation < 30)
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z + Addition);
+			Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z + Addition);
 
             TotalRotation += Addition;
 
@@ -106,7 +109,7 @@ public static class DanceMoves
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z - Addition);
+			Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z - Addition);
 
             TotalRotation -= Addition;
 
@@ -116,7 +119,7 @@ public static class DanceMoves
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z + Addition);
+			Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z + Addition);
 
             TotalRotation += Addition;
 
@@ -126,7 +129,7 @@ public static class DanceMoves
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z - Addition);
+			Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z - Addition);
 
             TotalRotation -= Addition;
 
@@ -136,12 +139,13 @@ public static class DanceMoves
         {
             float Addition = Time.deltaTime * 180;
 
-            Dancer.rotation = Quaternion.Euler(0, 0, Dancer.rotation.eulerAngles.z + Addition);
+			Dancer.transform.rotation = Quaternion.Euler(0, 0, Dancer.transform.rotation.eulerAngles.z + Addition);
 
             TotalRotation += Addition;
 
             yield return null;
         }
-        Dancer.rotation = Quaternion.identity;
+		Dancer.transform.rotation = Quaternion.identity;
+        Dancer.IsDancing = false;
     }
 }

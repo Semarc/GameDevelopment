@@ -200,9 +200,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 171992141}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0462, y: 0, z: 10}
-  m_LocalScale: {x: 0.91182643, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
@@ -217,9 +217,10 @@ GameObject:
   m_Component:
   - component: {fileID: 515940209}
   - component: {fileID: 515940208}
+  - component: {fileID: 515940210}
   m_Layer: 0
   m_Name: Narwhal
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,8 +263,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: addf81b2344d04d42b8763f8518417ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -291,6 +292,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &515940210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515940207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +358,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.297809
+  orthographic size: 4.9430013
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -401,9 +414,10 @@ GameObject:
   m_Component:
   - component: {fileID: 554905597}
   - component: {fileID: 554905596}
+  - component: {fileID: 554905598}
   m_Layer: 0
   m_Name: Walrus
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,8 +460,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a707d748b409fd24f83d0bf9d5828a65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -475,6 +489,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &554905598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554905595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647631654
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,9 +511,10 @@ GameObject:
   m_Component:
   - component: {fileID: 647631656}
   - component: {fileID: 647631655}
+  - component: {fileID: 647631657}
   m_Layer: 0
   m_Name: Duck
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -530,8 +557,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4096df8213204204fb7cb9e429ffe88c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -559,6 +586,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &647631657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647631654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &687363480
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,9 +608,10 @@ GameObject:
   m_Component:
   - component: {fileID: 687363482}
   - component: {fileID: 687363481}
+  - component: {fileID: 687363483}
   m_Layer: 0
   m_Name: Pig
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -614,8 +654,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3e324683cde883146bcdb68cf7dd65bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -643,6 +683,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &687363483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687363480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &730297133
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,9 +705,10 @@ GameObject:
   m_Component:
   - component: {fileID: 730297135}
   - component: {fileID: 730297134}
+  - component: {fileID: 730297136}
   m_Layer: 0
   m_Name: Chicken
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -698,8 +751,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fc4616bc485809a4bb3ad74dcf94b21a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -727,6 +780,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &730297136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730297133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &743115175
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,8 +848,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1039012739
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: de843e62a29d2f040b0b68e75b8a7fe4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -814,6 +879,8 @@ MonoBehaviour:
   - 5
   - 10
   - 20
+  discoLight: {fileID: 8964610244390865172, guid: e91529ced4be82b458776c2402ebe178, type: 3}
+  dogeSprite: {fileID: 21300000, guid: 0d4f0a4b68920f7459fde8ad2d50ea20, type: 3}
 --- !u!4 &743115178
 Transform:
   m_ObjectHideFlags: 0
@@ -822,7 +889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743115175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.48, y: -3.47, z: 0}
+  m_LocalPosition: {x: 6.6, y: 1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -839,9 +906,10 @@ GameObject:
   m_Component:
   - component: {fileID: 799008314}
   - component: {fileID: 799008313}
+  - component: {fileID: 799008315}
   m_Layer: 0
   m_Name: Panda
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -884,8 +952,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c50c6606e5c9fa9459ac856eefeaf10d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -913,6 +981,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799008315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799008312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &808654474
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,9 +1003,10 @@ GameObject:
   m_Component:
   - component: {fileID: 808654476}
   - component: {fileID: 808654475}
+  - component: {fileID: 808654477}
   m_Layer: 0
   m_Name: Snake
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -968,8 +1049,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e1fb3c7f627494241963cabbbf97ad2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -997,6 +1078,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &808654477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808654474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &955667889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,9 +1100,10 @@ GameObject:
   m_Component:
   - component: {fileID: 955667891}
   - component: {fileID: 955667890}
+  - component: {fileID: 955667892}
   m_Layer: 0
   m_Name: Parrot
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1052,8 +1146,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: de6b0784b88b27049b5e4b7e426fae33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1081,6 +1175,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &955667892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955667889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &987924410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,9 +1197,10 @@ GameObject:
   m_Component:
   - component: {fileID: 987924412}
   - component: {fileID: 987924411}
+  - component: {fileID: 987924413}
   m_Layer: 0
   m_Name: Penguin
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1136,8 +1243,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 74195d20347732d40a313f083e6e326d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1165,6 +1272,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &987924413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987924410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1348226236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,9 +1294,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1348226238}
   - component: {fileID: 1348226237}
+  - component: {fileID: 1348226239}
   m_Layer: 0
   m_Name: Rhino
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1220,8 +1340,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 370cffe6c74f0ac4cb28b5b959ee8e79, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1249,6 +1369,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1348226239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348226236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1745410737
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,9 +1391,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1745410739}
   - component: {fileID: 1745410738}
+  - component: {fileID: 1745410740}
   m_Layer: 0
   m_Name: Whale
-  m_TagString: Untagged
+  m_TagString: NPCDancer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1304,8 +1437,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756998007
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2c7c69a3130abe2498443ac161b9af13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1333,3 +1466,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1745410740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745410737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478f2605cfc1b34ea4404eb6aa1852c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
