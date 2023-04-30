@@ -8,9 +8,20 @@ using UnityEngine;
 public class AnimalAI : MonoBehaviour, IDancer
 {
 	public bool IsDancing { get; set; } = false;
-
+	public bool RedLight
+	{
+		get => redLight; set
+		{
+			redLight = value;
+			if (redLight && IsDancing)
+			{
+				FadeAndDestroy();
+			}
+		}
+	}
 	private Sprite OriginalSprite;
 	private SpriteRenderer sr;
+	private bool redLight = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -30,6 +41,10 @@ public class AnimalAI : MonoBehaviour, IDancer
 			{
 				IsDancing = true;
 				StartCoroutine(DanceMoves.AIDanceMoves[Random.Range(0, DanceMoves.AIDanceMoves.Length - 1)](this));
+				if (RedLight)
+				{
+					FadeAndDestroy();
+				}
 				yield return new WaitForSeconds(Random.Range(5f, 10f));
 			}
 			else
@@ -45,5 +60,10 @@ public class AnimalAI : MonoBehaviour, IDancer
 	public void SetSprite(Sprite newSprite)
 	{
 		sr.sprite = newSprite;
+	}
+	public void FadeAndDestroy()
+	{
+#warning Todo
+		Destroy(gameObject);
 	}
 }
