@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 using UnityEngine;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class PlayerInputs : MonoBehaviour, IDancer
 {
@@ -60,14 +62,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 			{ "SQUIDGAME", cheatSquidgame},
 		};
 
-
-		GameObject[] NPCDancersObjects = GameObject.FindGameObjectsWithTag(Constants.NPCDancerTagName);
-		List<AnimalAI> tempAnimalAiList = new();
-		foreach (GameObject item in NPCDancersObjects)
-		{
-			tempAnimalAiList.Add(item.GetComponent<AnimalAI>());
-		}
-		NPCDancers = tempAnimalAiList.ToArray();
+		NPCDancers = HelperFunctions.GetComponentsFromObjects<AnimalAI>(Constants.NPCDancerTagName);
 	}
 
 	#endregion
@@ -116,7 +111,7 @@ public class PlayerInputs : MonoBehaviour, IDancer
 
 
 
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.F) && !SquidgameCheatActive)
 		{
 			SpawnNewLight();
 		}
@@ -140,6 +135,12 @@ public class PlayerInputs : MonoBehaviour, IDancer
 			//{
 			//	speedIndex = (speedIndex + 1) % possibleSpeeds.Length;
 			//}
+
+			if (SquidgameCheatActive && moveVector.magnitude > 0)
+			{
+				SquidgameCheatActive = false;
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+			}
 
 			// Normalize vector, so that magnitude for diagonal movement is also 1
 			moveVector.Normalize();
@@ -231,18 +232,49 @@ public class PlayerInputs : MonoBehaviour, IDancer
 	}
 	private void cheatSquidgame()
 	{
-		if (SquidgameCheatActive)
+		SquidgameCheatActive = true;
+
+		LightsScript[] discoLights = HelperFunctions.GetComponentsFromObjects<LightsScript>(Constants.DiscoLightsTagName);
+
+		StartCoroutine(squidGameLights());
+
+		IEnumerator squidGameLights()
 		{
+			bool RedLight = false;
+			while (SquidgameCheatActive)
+			{
 
+				if (RedLight)
+				{
+					SetAllLightColors(Color.red);
+					SetAllRedLights();
+					yield return new WaitForSeconds(Random.Range(4, 8));
+				}
+				else
+				{
+					SetAllRedLights();
+					SetAllLightColors(Color.green);
+					yield return new WaitForSeconds(Random.Range(2, 6));
+				}
+				RedLight = !RedLight;
+			}
+
+			void SetAllLightColors(Color newColor)
+			{
+				foreach (LightsScript item in discoLights)
+				{
+					item.SetLightColor(newColor);
+				}
+			}
+			void SetAllRedLights()
+			{
+				foreach (AnimalAI item in NPCDancers)
+				{
+					item.RedLight = RedLight;
+				}
+			}
 		}
-		else
-		{
-
-		}
-
-		SquidgameCheatActive = !SquidgameCheatActive;
 	}
 
 	#endregion
-
 }
