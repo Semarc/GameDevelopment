@@ -1,16 +1,18 @@
+using System;
+using System.Collections.Generic;
+
 using UnityEngine;
 
 public class ConversationNode : ScriptableObject
 {
-	public ConversationAnswer[] conversationAnswers { get; private set; }
+	public List<ConversationAnswer> conversationAnswers { get; set; }
 	public string Question { get; private set; }
 	public GameLocation GameLocation { get; private set; }
 
-	public ConversationNode(string Question, GameLocation GameLocation, params ConversationAnswer[] answers)
+	public ConversationNode(string Question, GameLocation GameLocation)
 	{
 		this.Question = Question;
 		this.GameLocation = GameLocation;
-		conversationAnswers = answers;
 	}
 
 	public ConversationNode SelectAnswer(int Selected)
