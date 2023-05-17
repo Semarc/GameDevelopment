@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class ConversationNode : ScriptableObject
+public class ConversationNode
 {
-	public List<ConversationAnswer> conversationAnswers { get; set; }
+	public List<ConversationAnswer> conversationAnswers { get; set; } = new();
 	public string Question { get; private set; }
 	public GameLocation GameLocation { get; private set; }
 
@@ -17,6 +17,7 @@ public class ConversationNode : ScriptableObject
 
 	public ConversationNode SelectAnswer(int Selected)
 	{
+		conversationAnswers[Selected].SelectFunc();
 		return conversationAnswers[Selected].NextNode;
 	}
 }

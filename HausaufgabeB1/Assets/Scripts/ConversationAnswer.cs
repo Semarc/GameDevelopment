@@ -4,7 +4,7 @@ using UnityEditor;
 
 using UnityEngine;
 
-public class ConversationAnswer : ScriptableObject
+public class ConversationAnswer
 {
 	public ConversationAnswer(ConversationNode nextNode, string answer, Func<bool> condition = null, Action selectFunc = null)
 	{

@@ -44,20 +44,32 @@ public class ConversationManager : MonoBehaviour
 			int i1 = i;
 			ConversationButtons[i].onClick.AddListener(() => OnConversationClick(i1));
 		}
+		CurrentConversationNode = ConversationTreeStart();
+		SetConversationStuff();
 	}
+
 	public void OnConversationClick(int ConversationOption)
 	{
 		CurrentConversationNode = CurrentConversationNode.SelectAnswer(ConversationOption);
+		SetConversationStuff();
+	}
+
+	public void SetConversationStuff()
+	{
 		ConversationText.text = CurrentConversationNode.Question;
 		GameLocationImage.sprite = CurrentConversationNode.GameLocation.BackgroundImage;
 		for (int i = 0; i < ConversationButtons.Count; i++)
 		{
-			if (i > CurrentConversationNode.conversationAnswers.Count)
+			if (i < CurrentConversationNode.conversationAnswers.Count && CurrentConversationNode.conversationAnswers[i].Condition())
 			{
-				if (CurrentConversationNode.conversationAnswers[i].Condition())
-				{
-					ConversationButtons[i].GetComponentInChildren<TextMeshPro>().text = CurrentConversationNode.conversationAnswers[i].Answer;
-				}
+				ConversationButtons[i].gameObject.SetActive(true);
+				ConversationButtons[i].enabled = true;
+				ConversationButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = CurrentConversationNode.conversationAnswers[i].Answer;
+			}
+			else
+			{
+				ConversationButtons[i].enabled = false;
+				ConversationButtons[i].gameObject.SetActive(false);
 			}
 		}
 	}
@@ -85,7 +97,7 @@ public class ConversationManager : MonoBehaviour
 
 
 
-		ConversationNode OnPlaneStart                           = new("OnPlaneStart"                        , OnPlane);
+		ConversationNode OnPlaneStart                           = new("Welcome on board the A-537, the Arctic Expedition flight to Station Peak on the mission to investigate the danger of Glacier Aurora collapsing and endangering the surpassing of the Waterway below as well as causing a tidal wave that will destroy the Outpost for underwater research one hundred miles north.\r\nThe newest observations on data about the stability of Glacier Aurora have reached us and are highly alarming, which is why a expert was send to examine the situation. \r\nYou are said expert and soon your team and you will arrive at the Station to lead further investigations. But time is ticking, if the observations were true you might only have 24 hours before disaster strikes. Let's hope you are fast enough to collect information and plan further actions, in worst case a controlled detonation is still better then the total collapse.\r\n", OnPlane);
 
 		ConversationNode LandedPlaneNodeFromOnPlane             = new("LandedPlane"                         , LandedPlane);
 
@@ -157,7 +169,7 @@ public class ConversationManager : MonoBehaviour
 
 
 
-		List<ConversationAnswer> LabAnswers = new(){ new(LabFromArchive, "LookAround",() => MyConditions[Conditions.Archive] == false, () => MyConditions[Conditions.Archive] = true),
+		List<ConversationAnswer> LabAnswers = new(){ new(LabFromArchive, "LookAround",() => MyConditions[Conditions.Archive] == false, () => {MyConditions[Conditions.Archive] = true; Debug.Log("ConditionSet"); }),
 													 new(LabFromIceBearStudy, "StudyIcebears", () => MyConditions[Conditions.Archive] == true),
 													 new(LabFromAnalyzeData, "AnalyzeData", selectFunc: () => MyConditions[Conditions.DataAnalyzed] = true),
 													 new(LabFromInspectIceSample, "InspectIceSample", () => MyConditions[Conditions.FoundAusruestung] == true, () => MyConditions[Conditions.IceSampleInspected] = true),

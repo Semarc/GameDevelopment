@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameLocation : ScriptableObject
+public class GameLocation
 {
 	public GameLocation(Sprite backgroundImage, string name, bool foreGround = false)
 	{
