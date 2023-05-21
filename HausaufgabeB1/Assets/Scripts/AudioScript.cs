@@ -24,6 +24,7 @@ public class AudioScript : MonoBehaviour
         else
 		{
 			Debug.LogWarning("Duplicate AudioScripts");
+			Destroy(gameObject);
 		}
 		DontDestroyOnLoad(gameObject);
 	}

@@ -65,11 +65,14 @@ public class ConversationManager : MonoBehaviour
 		{
 			SceneManager.LoadScene(0);
 		}
-		CurrentConversationNode = CurrentConversationNode.SelectAnswer(ConversationOption);
+		if (ConversationOption < CurrentConversationNode.conversationAnswers.Count && CurrentConversationNode.conversationAnswers[ConversationOption].Condition())
+		{
+			CurrentConversationNode = CurrentConversationNode.SelectAnswer(ConversationOption);
 
-		AudioScript.Instance.PlaySelectSound();
+			AudioScript.Instance.PlaySelectSound();
 
-		SetConversationStuff();
+			SetConversationStuff();
+		}
 	}
 
 	public void SetConversationStuff()
@@ -82,6 +85,9 @@ public class ConversationManager : MonoBehaviour
 				? CurrentConversationNode.conversationAnswers[i].Answer
 				: string.Empty;
 		}
+
+		Debug.Log("Current Location: " + CurrentConversationNode.GameLocation.Name);
+
 		if (CurrentConversationNode.GameLocation.ForeGround)
 		{
 			ConversationButtons[0].text = "Go Back To Main Menu";
@@ -129,7 +135,7 @@ public class ConversationManager : MonoBehaviour
 
 		ConversationNode LabFromEingangsraum                    = new("This is station Pieks Lab. There's lots of funny science stuff everywhere. As you are a great professional you hold back from touching it all "                 , Lab);
 		ConversationNode LabFromArchive                         = new("Wow this is really cool! It's about polar bears! You love polar bears! And so interesting- Ahem nonono you're not here to look at that, you're a professional! But,,, polar bear studies-"                      , Lab);
-		ConversationNode LabFromIceBearStudy                    = new("You keep looking for more and get investigated. But somehow you forget the time over it and spend hours on completely irrelevant stuff. Glacier Aurora may have collapsed by now but hey you now know all about polar bears!"                 , Lab);
+		ConversationNode OverStudiedFromLab                     = new("You keep looking for more and get investigated. But somehow you forget the time over it and spend hours on completely irrelevant stuff. Glacier Aurora may have collapsed by now but hey you now know all about polar bears!"                 , OverStudied);
 		ConversationNode LabFromAnalyzeData                     = new("You've made some interesting observations that will definitely help you at the glacier!"                  , Lab);
 		ConversationNode LabFromInspectIceSample                = new("You've made some interesting observations that will definitely help you at the glacier!"             , Lab);
 
@@ -180,19 +186,18 @@ public class ConversationManager : MonoBehaviour
 
 
 
-		List<ConversationAnswer> LabAnswers = new(){ new(LabFromArchive, "Go investigate the cool science stuff",() => MyConditions[Conditions.Archive] == false, () => {MyConditions[Conditions.Archive] = true; Debug.Log("ConditionSet"); }),
-													 new(LabFromIceBearStudy, "Look further into the Ice bears", () => MyConditions[Conditions.Archive] == true),
+		List<ConversationAnswer> LabAnswers = new(){ new(LabFromArchive, "Go investigate the cool science stuff",() => MyConditions[Conditions.Archive] == false, () => {MyConditions[Conditions.Archive] = true; }),
+													 new(OverStudiedFromLab, "Look further into the Ice bears", () => MyConditions[Conditions.Archive] == true),
 													 new(LabFromAnalyzeData, "Research your case ", selectFunc: () => MyConditions[Conditions.DataAnalyzed] = true),
 													 new(LabFromInspectIceSample, "Take a closer look at Auroras ice structure ", () => MyConditions[Conditions.FoundAusruestung] == true, () => MyConditions[Conditions.IceSampleInspected] = true),
 													 new(EingangsraumFromLab, "Go back to the Entry Hall")};
 		LabFromEingangsraum.conversationAnswers =
 		LabFromArchive.conversationAnswers =
-		LabFromIceBearStudy.conversationAnswers =
 		LabFromAnalyzeData.conversationAnswers =
 		LabFromInspectIceSample.conversationAnswers = LabAnswers;
 
 
-		GarageFromEingangsraum.conversationAnswers.Add(new(OnTheWayFromGarage, "Leave for the expedition", () => MyConditions[Conditions.Archive] == true && (MyConditions[Conditions.LostAusruestung] == true || MyConditions[Conditions.IceSampleInspected] == true), () => AudioScript.Instance.PlayNachDerStationSound()));
+		GarageFromEingangsraum.conversationAnswers.Add(new(OnTheWayFromGarage, "Leave for the expedition", selectFunc: () => AudioScript.Instance.PlayNachDerStationSound()));
 		GarageFromEingangsraum.conversationAnswers.Add(new(EingangsraumFromGarage, "Go back to the Entry Hall"));
 
 
@@ -205,7 +210,7 @@ public class ConversationManager : MonoBehaviour
 
 		List<ConversationAnswer> BabyIceBearAnswers = new(){new(OnTheWayFromBabyIceBear, "Continue expedition"),
 															new(BabyIceBearFromWait, "Just Watch"),
-															new(KilledByMamaFromBabyIceBear, "o closer ")};
+															new(KilledByMamaFromBabyIceBear, "Go closer ")};
 
 
 		BabyIceBearFromOnTheWay.conversationAnswers =
