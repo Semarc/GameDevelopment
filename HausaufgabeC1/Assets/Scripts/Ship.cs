@@ -9,8 +9,9 @@ public abstract class Ship : MonoBehaviour
 
 	protected Rigidbody2D rb;
 
-	private void Awake()
+	protected virtual void Awake()
 	{
+		Debug.Log("Ship Awake");
 		rb = GetComponent<Rigidbody2D>();
 	}
 	public void DoDamage(int Damage)
