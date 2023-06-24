@@ -11,7 +11,6 @@ public abstract class Ship : MonoBehaviour
 
 	protected virtual void Awake()
 	{
-		Debug.Log("Ship Awake");
 		rb = GetComponent<Rigidbody2D>();
 	}
 	public void DoDamage(int Damage)
