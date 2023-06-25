@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
@@ -37,8 +31,9 @@ public class ParticleManager : MonoBehaviour
 
 	private void DoParticles(ParticleSystem system, Vector2 Position)
 	{
-		ParticleSystem particles = Instantiate(system, Position, Quaternion.identity);
+		ParticleSystem particles = Instantiate(system, transform);
+		particles.transform.position = Position;
 		particles.Play();
-		Destroy(particles, particles.main.duration + particles.main.startLifetime.constant);
+		Destroy(particles.gameObject, particles.main.duration + particles.main.startLifetime.constant);
 	}
 }

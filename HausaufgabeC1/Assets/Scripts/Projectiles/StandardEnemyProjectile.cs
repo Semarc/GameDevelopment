@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 
-public class StandardEnemyProjectile: ProjectileScript
+public class StandardEnemyProjectile : ProjectileScript
 {
 
 	protected override int Damage => 2;

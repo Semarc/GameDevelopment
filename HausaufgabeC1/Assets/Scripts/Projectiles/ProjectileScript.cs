@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 
 public abstract class ProjectileScript : MonoBehaviour
@@ -20,16 +16,15 @@ public abstract class ProjectileScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log("H: " + string.Join(", ", HostileTags) + Environment.NewLine + "C: " + collision.gameObject.tag);
+		//Debug.Log("H: " + string.Join(", ", HostileTags) + Environment.NewLine + "C: " + collision.gameObject.tag);
 		foreach (string item in HostileTags)
 		{
 			if (collision.gameObject.CompareTag(item))
 			{
-				Debug.Log("Compared True");
 				if (collision.TryGetComponent<Ship>(out Ship collidedShip))
 				{
+					Debug.Log($"Do Damage {Damage}");
 					collidedShip.DoDamage(Damage);
-					GameUIManager.Instance.SpawnHitText(collidedShip.transform, Damage);
 					Destroy(gameObject);
 				}
 			}

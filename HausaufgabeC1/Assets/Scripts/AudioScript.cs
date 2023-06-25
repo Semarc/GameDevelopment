@@ -19,6 +19,7 @@ public class AudioScript : MonoBehaviour
 			Debug.Log("Created AudioScript");
 			Instance = this;
 			player = GetComponent<AudioSource>();
+			PlayMusic();
 		}
 		else
 		{
@@ -51,13 +52,18 @@ public class AudioScript : MonoBehaviour
 	{
 		PlayClip(Music);
 	}
+
+
+
+
 	private void PlayClip(AudioClip clip)
 	{
+		player.Stop();
 		player.clip = clip;
 		player.Play();
 	}
-	public void SetVolume(int NewVolume)
+	public void SetVolume(float NewVolume)
 	{
-		player.volume = (float)NewVolume / 100;
+		player.volume = NewVolume;
 	}
 }

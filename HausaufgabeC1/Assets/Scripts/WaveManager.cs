@@ -1,12 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 
-using TMPro;
-
-using UnityEditor.Tilemaps;
-
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class WaveManager : MonoBehaviour
 {
@@ -99,7 +93,7 @@ public class WaveManager : MonoBehaviour
 			for (int i = 0; i < BossWaveCount; i++)
 			{
 				Vector3 position = new(spawnRanges[Random.Range(0, spawnRanges.Length)].TopPoint.x, Random.Range(spawnRanges[0].TopPoint.y, spawnRanges[0].BottomPoint.y));
-				GameObject shiptype = bossPrefabs[ Random.Range(0, shipPrefabs.Count)];
+				GameObject shiptype = bossPrefabs[Random.Range(0, bossPrefabs.Count)];
 
 				GameObject newShip = Instantiate(shiptype);
 				newShip.transform.position = position;

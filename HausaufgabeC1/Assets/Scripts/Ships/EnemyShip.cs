@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-
-using UnityEditor.Tilemaps;
 
 using UnityEngine;
 
@@ -70,6 +67,7 @@ public class EnemyShip : Ship
 
 	protected override void Destroyed()
 	{
+		Debug.Log("Enemy Ship Destroyed");
 		WaveManager.Instance.ReduceShipCount();
 		AudioScript.Instance.PlayEnemyDestroyedSound();
 		base.Destroyed();

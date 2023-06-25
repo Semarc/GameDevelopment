@@ -2,12 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using UnityEngine.InputSystem;
-
-using Unity.VisualScripting;
-
 using UnityEngine;
-using UnityEditor.Tilemaps;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public enum PlayerAttacks
@@ -57,6 +53,12 @@ public class PlayerShip : Ship
 		{
 			AttackOnCooldown.Add((PlayerAttacks)item, new());
 		}
+
+
+		Camera cam = Camera.main;
+		Vector2 topLeft = (Vector2)cam.ScreenToWorldPoint(new Vector3(0, cam.pixelHeight, cam.nearClipPlane));
+
+		transform.position = topLeft + 2 * (Vector2.down + Vector2.right);
 
 
 		Debug.Log("PlayerShip Awake");
@@ -252,7 +254,16 @@ public class PlayerShip : Ship
 
 	IEnumerator PlayerDestroyed()
 	{
-		yield return new WaitForSeconds(1);
+		float time = 1;
+		while (time > 0)
+		{
+			yield return null;
+			time -= Time.deltaTime;
+			AudioScript.Instance.SetVolume(time);
+		}
+
+		AudioScript.Instance.SetVolume(1);
+		AudioScript.Instance.PlayMusic();
 		SceneManager.LoadScene(0);
 	}
 }

@@ -965,7 +965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefabField: {fileID: 4551695422515748593, guid: 8eba6548dd18f09428eb7fa65edcf420, type: 3}
   healthField: 25
-  TimeBetweenAttacksField: 0.75
+  TimeBetweenAttacksField: 0.5
   speedField: 3
 --- !u!1 &2058057859569604805
 GameObject:
