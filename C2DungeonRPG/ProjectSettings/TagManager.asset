@@ -50,3 +50,6 @@ TagManager:
   - name: objekte
     uniqueID: 80141261
     locked: 0
+  - name: Bat
+    uniqueID: 3630837263
+    locked: 0
