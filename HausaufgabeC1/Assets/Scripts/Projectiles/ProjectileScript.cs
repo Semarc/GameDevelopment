@@ -29,6 +29,7 @@ public abstract class ProjectileScript : MonoBehaviour
 				if (collision.TryGetComponent<Ship>(out Ship collidedShip))
 				{
 					collidedShip.DoDamage(Damage);
+					GameUIManager.Instance.SpawnHitText(collidedShip.transform, Damage);
 					Destroy(gameObject);
 				}
 			}

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using TMPro;
+
 using UnityEditor.Tilemaps;
 
 using UnityEngine;
@@ -11,19 +13,12 @@ public class WaveManager : MonoBehaviour
 	public static WaveManager Instance { get; private set; }
 
 	[SerializeField] private List<GameObject> shipPrefabs = new ();
+	[SerializeField] private List<GameObject> bossPrefabs = new ();
 
 	private void Awake()
 	{
-		if (Instance == null)
-		{
-			Debug.Log("Created WaveManager");
-			Instance = this;
-		}
-		else
-		{
-			Debug.LogWarning("Duplicate WaveManager");
-			Destroy(gameObject);
-		}
+		Destroy(Instance);
+		Instance = this;
 		DontDestroyOnLoad(gameObject);
 	}
 
@@ -99,10 +94,17 @@ public class WaveManager : MonoBehaviour
 		}
 		else
 		{
-			GameObject newShip = Instantiate(shipPrefabs[0]);
+			int BossWaveCount = waveCount/5;
+			Random.InitState(waveCount);
+			for (int i = 0; i < BossWaveCount; i++)
+			{
+				Vector3 position = new(spawnRanges[Random.Range(0, spawnRanges.Length)].TopPoint.x, Random.Range(spawnRanges[0].TopPoint.y, spawnRanges[0].BottomPoint.y));
+				GameObject shiptype = bossPrefabs[ Random.Range(0, shipPrefabs.Count)];
 
-			newShip.transform.position = spawnRanges[0].TopPoint;
-			shipCount = 1;
+				GameObject newShip = Instantiate(shiptype);
+				newShip.transform.position = position;
+			}
+			shipCount = BossWaveCount;
 		}
 
 		Debug.Log("Spawned Ships: " + shipCount);

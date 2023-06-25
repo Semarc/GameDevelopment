@@ -19,6 +19,12 @@ public enum PlayerAttacks
 
 public class PlayerShip : Ship
 {
+	private class AttacksHeldAndCooldown
+	{
+		public bool IsOnCooldown = false;
+		public bool IsHeld = false;
+	}
+
 	[SerializeField] private GameObject ProjectilePrefab;
 
 
@@ -34,15 +40,12 @@ public class PlayerShip : Ship
 	private Vector2 moveDirection;
 
 
-
-	private bool isAttackHeld;
-
 	// How many seconds your coroutine will wait before doing its loop again
 	[SerializeField] private float shootDelay = .4f;
 	[SerializeField] private float tripleShootDelay = 3f;
 
 
-	private readonly Dictionary<PlayerAttacks, bool> AttackOnCooldown = new();
+	private readonly Dictionary<PlayerAttacks, AttacksHeldAndCooldown> AttackOnCooldown = new();
 
 	private bool godMode = false;
 
@@ -52,7 +55,7 @@ public class PlayerShip : Ship
 
 		foreach (object item in Enum.GetValues(typeof(PlayerAttacks)))
 		{
-			AttackOnCooldown.Add((PlayerAttacks)item, false);
+			AttackOnCooldown.Add((PlayerAttacks)item, new());
 		}
 
 
@@ -68,11 +71,15 @@ public class PlayerShip : Ship
 
 	private void OnGodMode(InputValue godModeInputValue)
 	{
-		godMode = !godMode;
-		Debug.Log("Toggeled Godmode" + godMode);
-		if (godMode)
+		if (godModeInputValue.Get<float>() != 0)
 		{
-			AudioScript.Instance.PlayGodModeActivatedSound();
+			godMode = !godMode;
+			Debug.Log("Toggeled Godmode" + godMode);
+			GameUIManager.Instance.ToogleGodmodText(godMode);
+			if (godMode)
+			{
+				AudioScript.Instance.PlayGodModeActivatedSound();
+			}
 		}
 	}
 
@@ -112,12 +119,12 @@ public class PlayerShip : Ship
 
 	IEnumerator ShootHoldCo()
 	{
-		if (AttackOnCooldown[PlayerAttacks.Shoot] == true)
+		if (AttackOnCooldown[PlayerAttacks.Shoot].IsOnCooldown == true)
 		{
 			yield break;
 		}
-		AttackOnCooldown[PlayerAttacks.Shoot] = true;
-		while (isAttackHeld)
+		AttackOnCooldown[PlayerAttacks.Shoot].IsOnCooldown = true;
+		while (AttackOnCooldown[PlayerAttacks.Shoot].IsHeld)
 		{
 			HelperFunctions.InstantiateChildObject(gameObject, ProjectilePrefab);
 			AudioScript.Instance.PlayShotSound();
@@ -127,7 +134,7 @@ public class PlayerShip : Ship
 			// can also be 'yield return null;' if you want this to loop every frame
 			// but that can be taxing on some computers, depending on what you are doing
 		}
-		AttackOnCooldown[PlayerAttacks.Shoot] = false;
+		AttackOnCooldown[PlayerAttacks.Shoot].IsOnCooldown = false;
 	}
 
 	// This gets called when the action is performed
@@ -135,7 +142,7 @@ public class PlayerShip : Ship
 	// pressed & when the button is held down
 	void handleShoot(InputAction.CallbackContext obj)
 	{
-		isAttackHeld = true;
+		AttackOnCooldown[PlayerAttacks.Shoot].IsHeld = true;
 		// Do whatever needs to be done if the button is held down
 		StartCoroutine(ShootHoldCo());
 	}
@@ -145,9 +152,9 @@ public class PlayerShip : Ship
 	// In this case, that is when we release the button
 	void handleShootCancel(InputAction.CallbackContext obj)
 	{
-		if (isAttackHeld)
+		if (AttackOnCooldown[PlayerAttacks.Shoot].IsHeld)
 		{
-			isAttackHeld = false;
+			AttackOnCooldown[PlayerAttacks.Shoot].IsHeld = false;
 			// Anything else you need to do upon canceling your action
 			//EndAttack(); // This can be anything, doesn't matter for this explanation
 		}
@@ -160,12 +167,12 @@ public class PlayerShip : Ship
 
 	IEnumerator TripleShootHoldCo()
 	{
-		if (AttackOnCooldown[PlayerAttacks.Shoot] == true)
+		if (AttackOnCooldown[PlayerAttacks.TripleShoot].IsOnCooldown == true)
 		{
 			yield break;
 		}
-		AttackOnCooldown[PlayerAttacks.Shoot] = true;
-		while (isAttackHeld)
+		AttackOnCooldown[PlayerAttacks.TripleShoot].IsOnCooldown = true;
+		while (AttackOnCooldown[PlayerAttacks.TripleShoot].IsHeld)
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -179,7 +186,7 @@ public class PlayerShip : Ship
 			// can also be 'yield return null;' if you want this to loop every frame
 			// but that can be taxing on some computers, depending on what you are doing
 		}
-		AttackOnCooldown[PlayerAttacks.Shoot] = false;
+		AttackOnCooldown[PlayerAttacks.TripleShoot].IsOnCooldown = false;
 	}
 
 	// This gets called when the action is performed
@@ -187,7 +194,7 @@ public class PlayerShip : Ship
 	// pressed & when the button is held down
 	void handleTripleShoot(InputAction.CallbackContext obj)
 	{
-		isAttackHeld = true;
+		AttackOnCooldown[PlayerAttacks.TripleShoot].IsHeld = true;
 		// Do whatever needs to be done if the button is held down
 		StartCoroutine(TripleShootHoldCo());
 	}
@@ -197,9 +204,9 @@ public class PlayerShip : Ship
 	// In this case, that is when we release the button
 	void handleTripleShootCancel(InputAction.CallbackContext obj)
 	{
-		if (isAttackHeld)
+		if (AttackOnCooldown[PlayerAttacks.TripleShoot].IsHeld)
 		{
-			isAttackHeld = false;
+			AttackOnCooldown[PlayerAttacks.TripleShoot].IsHeld = false;
 			// Anything else you need to do upon canceling your action
 			//EndAttack(); // This can be anything, doesn't matter for this explanation
 		}
@@ -237,6 +244,7 @@ public class PlayerShip : Ship
 			Debug.Log("Player Destroyed");
 			AudioScript.Instance.PlayPlayerHitSound();
 			ParticleManager.Instance.PlayerExplosion(transform.position);
+			speedField = 0;
 			StartCoroutine(PlayerDestroyed());
 		}
 	}
@@ -244,7 +252,7 @@ public class PlayerShip : Ship
 
 	IEnumerator PlayerDestroyed()
 	{
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(1);
 		SceneManager.LoadScene(0);
 	}
 }

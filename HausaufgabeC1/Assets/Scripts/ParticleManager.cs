@@ -28,12 +28,17 @@ public class ParticleManager : MonoBehaviour
 	[SerializeField] private ParticleSystem enemyExplosion;
 	public void PlayerExplosion(Vector2 Position)
 	{
-		ParticleSystem particles = Instantiate(enemyExplosion, Position, Quaternion.identity);
-		particles.Play();
+		DoParticles(playerExplosion, Position);
 	}
 	public void EnemyExplosion(Vector2 Position)
 	{
-		ParticleSystem particles = Instantiate(enemyExplosion, Position, Quaternion.identity);
+		DoParticles(enemyExplosion, Position);
+	}
+
+	private void DoParticles(ParticleSystem system, Vector2 Position)
+	{
+		ParticleSystem particles = Instantiate(system, Position, Quaternion.identity);
 		particles.Play();
+		Destroy(particles, particles.main.duration + particles.main.startLifetime.constant);
 	}
 }
