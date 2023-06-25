@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class StandardPlayerProjectile : ProjectileScript
+public class StandardEnemyProjectile: ProjectileScript
 {
 
 	protected override int Damage => 2;
@@ -11,5 +11,5 @@ public class StandardPlayerProjectile : ProjectileScript
 	[SerializeField] private Vector2 MoveVectorField;
 	protected override Vector2 MoveVector => MoveVectorField;
 
-	protected override string[] HostileTags => new[] { Konstanten.EnemyShipTag };
+	protected override string[] HostileTags => new[] { Konstanten.PlayerShipTag };
 }

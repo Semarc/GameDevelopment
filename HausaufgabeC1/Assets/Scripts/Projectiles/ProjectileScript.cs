@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -19,13 +20,16 @@ public abstract class ProjectileScript : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		Debug.Log("H: " + string.Join(", ", HostileTags) + Environment.NewLine + "C: " + collision.gameObject.tag);
 		foreach (string item in HostileTags)
 		{
-			if (collision.gameObject.CompareTag(tag))
+			if (collision.gameObject.CompareTag(item))
 			{
+				Debug.Log("Compared True");
 				if (collision.TryGetComponent<Ship>(out Ship collidedShip))
 				{
 					collidedShip.DoDamage(Damage);
+					Destroy(gameObject);
 				}
 			}
 		}

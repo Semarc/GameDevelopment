@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""GodMode"",
+                    ""type"": ""Value"",
+                    ""id"": ""7814862a-ea0d-4630-a706-33a9f724ce0d"",
+                    ""expectedControlType"": ""Digital"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Triple Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e94d4956-039f-4b42-9f1d-a7bb03372214"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GodMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -182,6 +202,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ShipControls_Shoot = m_ShipControls.FindAction("Shoot", throwIfNotFound: true);
         m_ShipControls_TripleShoot = m_ShipControls.FindAction("Triple Shoot", throwIfNotFound: true);
         m_ShipControls_Movement = m_ShipControls.FindAction("Movement", throwIfNotFound: true);
+        m_ShipControls_GodMode = m_ShipControls.FindAction("GodMode", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +267,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_ShipControls_Shoot;
     private readonly InputAction m_ShipControls_TripleShoot;
     private readonly InputAction m_ShipControls_Movement;
+    private readonly InputAction m_ShipControls_GodMode;
     public struct ShipControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -253,6 +275,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_ShipControls_Shoot;
         public InputAction @TripleShoot => m_Wrapper.m_ShipControls_TripleShoot;
         public InputAction @Movement => m_Wrapper.m_ShipControls_Movement;
+        public InputAction @GodMode => m_Wrapper.m_ShipControls_GodMode;
         public InputActionMap Get() { return m_Wrapper.m_ShipControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -271,6 +294,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @GodMode.started += instance.OnGodMode;
+            @GodMode.performed += instance.OnGodMode;
+            @GodMode.canceled += instance.OnGodMode;
         }
 
         private void UnregisterCallbacks(IShipControlsActions instance)
@@ -284,6 +310,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @GodMode.started -= instance.OnGodMode;
+            @GodMode.performed -= instance.OnGodMode;
+            @GodMode.canceled -= instance.OnGodMode;
         }
 
         public void RemoveCallbacks(IShipControlsActions instance)
@@ -315,5 +344,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnTripleShoot(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnGodMode(InputAction.CallbackContext context);
     }
 }

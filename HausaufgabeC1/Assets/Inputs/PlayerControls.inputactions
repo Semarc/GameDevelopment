@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "GodMode",
+                    "type": "Value",
+                    "id": "7814862a-ea0d-4630-a706-33a9f724ce0d",
+                    "expectedControlType": "Digital",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -130,6 +139,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Triple Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e94d4956-039f-4b42-9f1d-a7bb03372214",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GodMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

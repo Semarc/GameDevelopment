@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 
 using UnityEngine;
+using UnityEditor.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public enum PlayerAttacks
 {
@@ -23,9 +25,10 @@ public class PlayerShip : Ship
 	private PlayerControls controls;
 
 
-	public int speed;
+	[SerializeField] private float speedField;
+	protected override float speed => speedField;
 
-	public override int Health { get; protected set; } = 20;
+	public override int Health { get; protected set; } = 1;
 
 
 	private Vector2 moveDirection;
@@ -41,6 +44,7 @@ public class PlayerShip : Ship
 
 	private readonly Dictionary<PlayerAttacks, bool> AttackOnCooldown = new();
 
+	private bool godMode = false;
 
 	protected override void Awake()
 	{
@@ -59,8 +63,17 @@ public class PlayerShip : Ship
 
 	private void OnMovement(InputValue movementValue)
 	{
-		Debug.Log("Move Called " + moveDirection);
 		moveDirection = movementValue.Get<Vector2>();
+	}
+
+	private void OnGodMode(InputValue godModeInputValue)
+	{
+		godMode = !godMode;
+		Debug.Log("Toggeled Godmode" + godMode);
+		if (godMode)
+		{
+			AudioScript.Instance.PlayGodModeActivatedSound();
+		}
 	}
 
 	//private void OnShoot(InputValue shootValue)
@@ -106,9 +119,8 @@ public class PlayerShip : Ship
 		AttackOnCooldown[PlayerAttacks.Shoot] = true;
 		while (isAttackHeld)
 		{
-			Transform temp =  Instantiate(ProjectilePrefab, transform, false).transform;
-
-			temp.SetPositionAndRotation(transform.position, ProjectilePrefab.transform.rotation);
+			HelperFunctions.InstantiateChildObject(gameObject, ProjectilePrefab);
+			AudioScript.Instance.PlayShotSound();
 
 			yield return new WaitForSeconds(shootDelay);
 
@@ -216,5 +228,23 @@ public class PlayerShip : Ship
 	{
 		moveDirection = new Vector2(0, moveDirection.y);
 		rb.velocity = moveDirection * speed;
+	}
+
+	public override void DoDamage(int Damage)
+	{
+		if (!godMode)
+		{
+			Debug.Log("Player Destroyed");
+			AudioScript.Instance.PlayPlayerHitSound();
+			ParticleManager.Instance.PlayerExplosion(transform.position);
+			StartCoroutine(PlayerDestroyed());
+		}
+	}
+
+
+	IEnumerator PlayerDestroyed()
+	{
+		yield return new WaitForSeconds(3);
+		SceneManager.LoadScene(0);
 	}
 }

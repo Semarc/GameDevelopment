@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Ship : MonoBehaviour
 {
 	public abstract int Health { get; protected set; }
+	protected abstract float speed { get; }
 
 	protected Rigidbody2D rb;
 
@@ -13,12 +14,17 @@ public abstract class Ship : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 	}
-	public void DoDamage(int Damage)
+	public virtual void DoDamage(int Damage)
 	{
 		Health -= Damage;
 		if (Health <= 0)
 		{
-			Destroy(gameObject);
+			Destroyed();
 		}
+	}
+	protected virtual void Destroyed()
+	{
+		ParticleManager.Instance.EnemyExplosion(transform.position);
+		Destroy(gameObject);
 	}
 }
