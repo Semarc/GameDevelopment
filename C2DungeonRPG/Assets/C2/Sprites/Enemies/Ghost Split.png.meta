@@ -20,12 +20,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -43,17 +42,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -64,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
   cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
@@ -117,20 +115,177 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: Ghost Split_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 41
+        width: 165
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79b30192009ffa349a9d816c64a8a79b
+      internalID: -1669279224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost Split_1
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 302
+        width: 157
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa95cffc761571f41b381329dab994db
+      internalID: 1356208620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost Split_2
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 177
+        width: 158
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e913d11de17b640a98d5475a7623c8
+      internalID: -2105992275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost Split_3
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 116
+        width: 28
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b344d213261906148a2d087b9d50f576
+      internalID: -689039292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost Split_4
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 116
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd1d69a00840dd34e95b847c6b35dd62
+      internalID: 1780358668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghost Split_5
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 67
+        width: 119
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edfd8df26fbfe344e8f47c9f13f01283
+      internalID: 220424535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -188, y: -177.5}
+      - {x: -188, y: 205.5}
+      - {x: -24, y: 205.5}
+      - {x: -24, y: -177.5}
+    - - {x: 5, y: 91.5}
+      - {x: 5, y: 198.5}
+      - {x: 159, y: 198.5}
+      - {x: 159, y: 91.5}
+    - - {x: 29, y: -38.5}
+      - {x: 29, y: 78.5}
+      - {x: 185, y: 78.5}
+      - {x: 185, y: -38.5}
+    - - {x: 58, y: -90.5}
+      - {x: 58, y: -58.5}
+      - {x: 86, y: -58.5}
+      - {x: 86, y: -90.5}
+    - - {x: 107, y: -91.5}
+      - {x: 107, y: -58.5}
+      - {x: 135, y: -58.5}
+      - {x: 135, y: -91.5}
+    - - {x: 36, y: -144.5}
+      - {x: 36, y: -99.5}
+      - {x: 150, y: -99.5}
+      - {x: 150, y: -144.5}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
-  mipmapLimitGroupName: 
+    nameFileIdTable:
+      Ghost Split_0: -1669279224
+      Ghost Split_1: 1356208620
+      Ghost Split_2: -2105992275
+      Ghost Split_3: -689039292
+      Ghost Split_4: 27478247
+      Ghost Split_5: 1780358668
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
