@@ -1,11 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+	[SerializeField] private Text HighScoreText;
+
+	private void Start()
+	{
+		HighScoreText.text = $"HIGHSCORE: {SaveManager.GetHighScore()}";
+	}
+
 	// Update is called once per frame
 	void Update()
 	{

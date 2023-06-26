@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1406236669836973403}
   - component: {fileID: 2613606460402324737}
   - component: {fileID: -677521703978610862}
-  - component: {fileID: -3042209978839341893}
+  - component: {fileID: 2852441780914383271}
   m_Layer: 0
   m_Name: PlayerProjectile
   m_TagString: Untagged
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: 8417cee640589b04cb7235ff0281bb3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 0.09, y: 0.54}
   m_AdaptiveModeThreshold: 0.5
@@ -128,13 +128,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-3042209978839341893
+--- !u!114 &2852441780914383271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4551695422515748593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494e37ac41fb21e4b8271113ad2dea1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 159b3a5c1567eb74da17d2f13a59f9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveVectorField: {x: 6, y: 0}

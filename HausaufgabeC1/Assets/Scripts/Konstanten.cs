@@ -1,5 +1,6 @@
-public static class Kónstanten
+public static class Konstanten
 {
-	public static string EnemyTag = "";
-	public static string PlayerTag = "";
+	public static string EnemyShipTag = "EnemyShip";
+	public static string PlayerShipTag = "PlayerShip";
+	public static string BoundryCollider = "BoundryCollider";
 }
