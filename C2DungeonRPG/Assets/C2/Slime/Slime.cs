@@ -11,9 +11,12 @@ public class Slime : MonoBehaviour
     float animationTimer = 0f;
     int animationIndex = 0;
 
-    void Awake() => sr = GetComponent<SpriteRenderer>();
+	void Awake()
+	{
+		sr = GetComponent<SpriteRenderer>();
+	}
 
-    void Update()
+	void Update()
     {
         // Animate the slime sprite
         if (idleSprites.Length > 0)

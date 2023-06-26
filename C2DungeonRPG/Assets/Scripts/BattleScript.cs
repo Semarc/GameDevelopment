@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleScript : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class BattleScript : MonoBehaviour
 	#region BattleVariables
 
 
-	private int PlayerHP { get => playerHP; set { playerHP = Math.Max(value, 0); } }
+	private int PlayerHP { get => playerHP; set => playerHP = Math.Max(value, 0); }
 	private const int PlayerMaxHP = 10;
 	private int EnemyHP = 20;
 	private bool EnemyCharging;
@@ -36,6 +37,10 @@ public class BattleScript : MonoBehaviour
 
 
 	#endregion
+
+	[SerializeField] Transform bat;
+
+
 
 	void Start()
 	{
@@ -77,7 +82,7 @@ public class BattleScript : MonoBehaviour
 
 	private void Heal()
 	{
-		int heal = Math.Max(PlayerHP + Random.Range(2, 5), PlayerMaxHP) - PlayerHP;
+		int heal = Math.Min(PlayerHP + Random.Range(2, 5), PlayerMaxHP) - PlayerHP;
 		PlayerHP += heal;
 		UpdatePlayerHP();
 		ShowInfoText($"Player was healed by {heal} HP");
@@ -105,7 +110,7 @@ public class BattleScript : MonoBehaviour
 		{
 			if (PlayerDefending)
 			{
-				DisplayText = "You block the enemie's deadly attack";
+				DisplayText = "You block the enemy's deadly attack";
 			}
 			else
 			{
@@ -113,6 +118,7 @@ public class BattleScript : MonoBehaviour
 				playerHP = 0;
 				BattleFinished(DisplayText);
 			}
+			EnemyCharging = false;
 		}
 		else
 		{
@@ -133,7 +139,16 @@ public class BattleScript : MonoBehaviour
 				else
 				{
 					PlayerHP -= damage;
-					DisplayText = PlayerHP <= 0 ? $"The enemy deals {damage} HP of damage. You are dead" : $"The enemy deals {damage} HP of damage";
+					if (PlayerHP <= 0)
+					{
+						DisplayText = $"The enemy deals {damage} HP of damage. You are dead";
+						BattleFinished(DisplayText);
+						return;
+					}
+					else
+					{
+						DisplayText = $"The enemy deals {damage} HP of damage";
+					}
 				}
 			}
 		}
@@ -143,7 +158,29 @@ public class BattleScript : MonoBehaviour
 
 	private IEnumerator EnemyTurnCo(string DisplayText)
 	{
-		yield return new WaitForSeconds(2.5f);
+		Vector3 previousBatPosition = bat.position;
+		float time = 1;
+
+		while (time >= 0)
+		{
+			bat.localScale = new Vector3(10, 10 * (0.6f + time * 0.4f), 10);
+			bat.position = previousBatPosition + 0.2f * time * Vector3.up;
+			time -= Time.deltaTime;
+			yield return null;
+		}
+		time = 0;
+		while (time <= 1)
+		{
+			bat.localScale = new Vector3(10, 10 * (0.6f + time * 0.4f), 10);
+			bat.position = previousBatPosition - 0.2f * time * Vector3.up;
+			time += Time.deltaTime;
+			yield return null;
+		}
+		bat.position = previousBatPosition;
+
+		yield return new WaitForSeconds(0.5f);
+
+
 		AttackButton.interactable =
 		DefendButton.interactable =
 		HealButton.interactable =
@@ -155,6 +192,14 @@ public class BattleScript : MonoBehaviour
 
 	private void BattleFinished(string DisplayText)
 	{
+		ShowInfoText(DisplayText);
+		StartCoroutine(BattleFinishedCO());
+	}
+
+	IEnumerator BattleFinishedCO()
+	{
+		yield return new WaitForSeconds(2);
+		SceneManager.LoadScene(0);
 
 	}
 
@@ -167,10 +212,10 @@ public class BattleScript : MonoBehaviour
 	{
 		InfoText.gameObject.SetActive(true);
 		InfoText.text = Info;
-		StartCoroutine(HideInfoText());
+		StartCoroutine(HideInfoTextCO());
 	}
 
-	IEnumerator HideInfoText()
+	IEnumerator HideInfoTextCO()
 	{
 		yield return new WaitForSeconds(2);
 		InfoText.gameObject.SetActive(false);
