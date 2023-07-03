@@ -83,7 +83,7 @@ public class BallController : MonoBehaviour
 
 		if (transform.position.y <= -20)
 		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+			SceneManagerScript.Instance.ReloadScene();
 		}
 	}
 }
