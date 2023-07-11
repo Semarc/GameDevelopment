@@ -9,7 +9,7 @@ public class GoalScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag(Konstanten.PlayerTag) && PointManager.Instance.GoalUnlocked)
+		if (other.gameObject.CompareTag(Konstanten.PlayerTag) && LevelManager.Instance.GoalUnlocked)
 		{
 			Victory();
 		}

@@ -5,7 +5,11 @@ public class AudioScript : MonoBehaviour
 	public static AudioScript Instance { get; private set; }
 
 	[SerializeField] AudioClip Victory;
+	[SerializeField] AudioClip CollectPoint;
+	[SerializeField] AudioClip Jump;
+
 	[SerializeField] AudioClip Music;
+	[SerializeField] AudioClip MainMenuMusic;
 
 	AudioSource player;
 	private void Awake()
@@ -28,11 +32,27 @@ public class AudioScript : MonoBehaviour
 	{
 		player.PlayOneShot(Victory);
 	}
+	public void PlayPointCollectSound()
+	{
+		player.PlayOneShot(CollectPoint);
+	}
+	public void PlayJumpSound()
+	{
+		player.PlayOneShot(Jump);
+	}
+
 	public void PlayMusic()
 	{
 		PlayClip(Music);
 	}
-
+	public void PlayMainMenuMusic()
+	{
+		PlayClip(Music);
+	}
+	public void StopMusic()
+	{
+		player.Stop();
+	}
 
 
 

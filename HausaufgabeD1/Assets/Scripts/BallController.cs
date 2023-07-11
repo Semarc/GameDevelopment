@@ -1,3 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
 using Unity.VisualScripting;
 
 using UnityEngine;
@@ -14,10 +18,14 @@ public class BallController : MonoBehaviour
 
 	[SerializeField] private float CameraBackOffset;
 	[SerializeField] private float CameraHeight;
+	[SerializeField] private ParticleSystem GroundParticles;
+
+
 
 	private Rigidbody rb;
 
 	private bool jump;
+	private bool moving;
 
 	private Camera cam;
 
@@ -32,6 +40,7 @@ public class BallController : MonoBehaviour
 	private void OnMove(InputValue movementValue)
 	{
 		moveDirection = movementValue.Get<Vector3>().normalized;
+		moving = moveDirection != Vector3.zero;
 	}
 	private void OnGodMode(InputValue godModeInputValue)
 	{
@@ -50,6 +59,7 @@ public class BallController : MonoBehaviour
 	{
 		if (jumpValue.Get<float>() != 0)
 		{
+			AudioScript.Instance.PlayJumpSound();
 			Debug.Log("Jumped");
 			jump = true;
 		}
@@ -85,5 +95,31 @@ public class BallController : MonoBehaviour
 		{
 			SceneManagerScript.Instance.ReloadScene();
 		}
+	}
+
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		ContactPoint[] temp = new ContactPoint[collision.contactCount];
+		collision.GetContacts(temp);
+		Vector3[] temp2 = temp.Select(x => x.point).ToArray();
+
+		Vector3 meanVector = Helperfunctions.GetMeanVector(temp2);
+
+
+
+		if (collision.gameObject.CompareTag(Konstanten.GoalTag) && LevelManager.Instance.GoalUnlocked && !LevelManager.Instance.Victory)
+		{
+			LevelManager.Instance.Victory = true;
+			AudioScript.Instance.StopMusic();
+			AudioScript.Instance.PlayVictorySound();
+			StartCoroutine(VictoryCo());
+		}
+	}
+
+	IEnumerator VictoryCo()
+	{
+		yield return new WaitForSeconds(4);
+		SceneManagerScript.Instance.LoadMainMenu();
 	}
 }

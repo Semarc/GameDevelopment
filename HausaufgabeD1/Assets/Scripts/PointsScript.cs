@@ -13,8 +13,8 @@ public class PointsScript : MonoBehaviour
 	private void Awake()
 	{
 		transform.position = new Vector3(transform.position.x, PointHeight, transform.position.z);
-		PointManager.Instance.Points.Add(this);
-		PointManager.Instance.UpdateText();
+		LevelManager.Instance.Points.Add(this);
+		LevelManager.Instance.UpdateText();
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -23,7 +23,8 @@ public class PointsScript : MonoBehaviour
 		{
 			Collected = true;
 			gameObject.SetActive(false);
-			PointManager.Instance.UpdateText();
+			LevelManager.Instance.UpdateText();
+			AudioScript.Instance.PlayPointCollectSound();
 		}
 	}
 }
