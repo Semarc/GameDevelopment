@@ -150,6 +150,7 @@ public class BallController : MonoBehaviour
 	private void OnCollisionExit(Collision collision)
 	{
 		touchingGround = false;
+		jumpcount = Jumpcount.One;
 	}
 
 	IEnumerator VictoryCo()

@@ -10,6 +10,7 @@ public class PointsScript : MonoBehaviour
 
 	[SerializeField] float PointHeight;
 	private ParticleSystem ExplosionParticles;
+	private Renderer rend;
 
 	private void Awake()
 	{
@@ -17,6 +18,7 @@ public class PointsScript : MonoBehaviour
 		LevelManager.Instance.Points.Add(this);
 		LevelManager.Instance.UpdateText();
 		ExplosionParticles = GetComponentInChildren<ParticleSystem>();
+		rend = GetComponent<Renderer>();
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -24,8 +26,8 @@ public class PointsScript : MonoBehaviour
 		if (other.gameObject.CompareTag(Konstanten.PlayerTag) && Collected == false)
 		{
 			Collected = true;
-			gameObject.SetActive(false);
 			ExplosionParticles.Play();
+			rend.enabled = false;
 			LevelManager.Instance.UpdateText();
 			AudioScript.Instance.PlayPointCollectSound();
 		}
