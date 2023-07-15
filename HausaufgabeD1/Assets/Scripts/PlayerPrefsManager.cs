@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 internal static class PlayerPrefsManager
 {
@@ -14,9 +8,10 @@ internal static class PlayerPrefsManager
 	{
 		return Record + Stage.ToString();
 	}
-	public static void SaveRecordTime(int Stage, float Time)
+	public static void SaveRecordTime(int stage, float Time)
 	{
-		PlayerPrefs.SetFloat(GetSaveString(Stage), Time);
+		PlayerPrefs.SetFloat(GetSaveString(stage), Time);
+		Debug.Log($"Saved RecordTime, Level {stage}, time {Time}");
 	}
 
 	public static bool TryGetRecordTime(int stage, out float Time)
@@ -24,6 +19,7 @@ internal static class PlayerPrefsManager
 		float defaultValue = -1;
 		Time = PlayerPrefs.GetFloat(GetSaveString(stage), defaultValue);
 
+		Debug.Log($"Got RecordTime, Level {stage}, time {Time}");
 		return !(Time == defaultValue);
 	}
 }

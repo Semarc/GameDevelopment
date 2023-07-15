@@ -7,6 +7,7 @@ public class AudioScript : MonoBehaviour
 	[SerializeField] AudioClip Victory;
 	[SerializeField] AudioClip CollectPoint;
 	[SerializeField] AudioClip Jump;
+	[SerializeField] AudioClip Switch;
 
 	[SerializeField] AudioClip Music;
 	[SerializeField] AudioClip MainMenuMusic;
@@ -19,7 +20,6 @@ public class AudioScript : MonoBehaviour
 			Debug.Log("Created AudioScript");
 			Instance = this;
 			player = GetComponent<AudioSource>();
-			PlayMusic();
 			DontDestroyOnLoad(gameObject);
 		}
 		else
@@ -40,6 +40,10 @@ public class AudioScript : MonoBehaviour
 	{
 		player.PlayOneShot(Jump);
 	}
+	public void PlaySwitchSound()
+	{
+		player.PlayOneShot(Switch);
+	}
 
 	public void PlayMusic()
 	{
@@ -47,7 +51,7 @@ public class AudioScript : MonoBehaviour
 	}
 	public void PlayMainMenuMusic()
 	{
-		PlayClip(Music);
+		PlayClip(MainMenuMusic);
 	}
 	public void StopMusic()
 	{

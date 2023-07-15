@@ -12,13 +12,13 @@ public class SceneManagerScript : MonoBehaviour
 	{
 		if (Instance == null)
 		{
-			Debug.Log("Created AudioScript");
+			Debug.Log("Created SceneManagerScript");
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
 		else
 		{
-			Debug.LogWarning("Duplicate AudioScript");
+			Debug.LogWarning("Duplicate SceneManagerScript");
 			Destroy(gameObject);
 		}
 	}

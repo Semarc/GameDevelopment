@@ -53,6 +53,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReturnMainMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bbbfb04-6c3c-4f4e-9c72-04f2c6d18d24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""GodMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d63c5133-ab86-48db-ab5b-5a1aeb5edf70"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReturnMainMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -165,6 +185,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_PlayerBall_Move = m_PlayerBall.FindAction("Move", throwIfNotFound: true);
         m_PlayerBall_Jump = m_PlayerBall.FindAction("Jump", throwIfNotFound: true);
         m_PlayerBall_GodMode = m_PlayerBall.FindAction("GodMode", throwIfNotFound: true);
+        m_PlayerBall_ReturnMainMenu = m_PlayerBall.FindAction("ReturnMainMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +250,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerBall_Move;
     private readonly InputAction m_PlayerBall_Jump;
     private readonly InputAction m_PlayerBall_GodMode;
+    private readonly InputAction m_PlayerBall_ReturnMainMenu;
     public struct PlayerBallActions
     {
         private @Controls m_Wrapper;
@@ -236,6 +258,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerBall_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerBall_Jump;
         public InputAction @GodMode => m_Wrapper.m_PlayerBall_GodMode;
+        public InputAction @ReturnMainMenu => m_Wrapper.m_PlayerBall_ReturnMainMenu;
         public InputActionMap Get() { return m_Wrapper.m_PlayerBall; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -254,6 +277,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @GodMode.started += instance.OnGodMode;
             @GodMode.performed += instance.OnGodMode;
             @GodMode.canceled += instance.OnGodMode;
+            @ReturnMainMenu.started += instance.OnReturnMainMenu;
+            @ReturnMainMenu.performed += instance.OnReturnMainMenu;
+            @ReturnMainMenu.canceled += instance.OnReturnMainMenu;
         }
 
         private void UnregisterCallbacks(IPlayerBallActions instance)
@@ -267,6 +293,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @GodMode.started -= instance.OnGodMode;
             @GodMode.performed -= instance.OnGodMode;
             @GodMode.canceled -= instance.OnGodMode;
+            @ReturnMainMenu.started -= instance.OnReturnMainMenu;
+            @ReturnMainMenu.performed -= instance.OnReturnMainMenu;
+            @ReturnMainMenu.canceled -= instance.OnReturnMainMenu;
         }
 
         public void RemoveCallbacks(IPlayerBallActions instance)
@@ -289,5 +318,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGodMode(InputAction.CallbackContext context);
+        void OnReturnMainMenu(InputAction.CallbackContext context);
     }
 }

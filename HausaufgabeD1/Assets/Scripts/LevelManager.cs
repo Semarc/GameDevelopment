@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
 			Instance = this;
 			SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
 			UpdateText();
+			AudioScript.Instance.PlayMusic();
 		}
 		else
 		{
@@ -39,6 +40,7 @@ public class LevelManager : MonoBehaviour
 		if (Instance == this)
 		{
 			Instance = null;
+			Destroy(this);
 		}
 	}
 
