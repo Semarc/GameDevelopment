@@ -1,14 +1,10 @@
-﻿
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(AudioSource))]
 public class FirstPersonController : MonoBehaviour
 {
-	#region PreMade
-
 	[SerializeField] LayerMask mask;
 	[SerializeField] private bool m_IsWalking = default;
 	[SerializeField] private float m_WalkSpeed = default;
@@ -298,74 +294,4 @@ public class FirstPersonController : MonoBehaviour
 		}
 		body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
 	}
-
-	#endregion
-
-
-	#region MyStuff
-
-	[SerializeField] private GameObject[] CubePrefab;
-
-	int ChoosenBox = 0;
-
-	private void OnFlashlight(InputValue value)
-	{
-
-	}
-
-	private void OnReturnMainMenu(InputValue value)
-	{
-
-	}
-
-	private void OnDayTime(InputValue value)
-	{
-
-	}
-
-	private void OnNightTime(InputValue value)
-	{
-
-	}
-
-	private void OnThrowBall(InputValue value)
-	{
-
-	}
-
-	private void OnSpawnBox(InputValue value)
-	{
-		//Debug.Log("Camera Angle: " + m_Camera.transform.TransformDirection(Vector3.forward).ToString());
-		//Debug.Log("Player Angle: " + transform.TransformDirection(Vector3.forward).ToString());
-		Debug.Log("Mouse Angle: " + new Vector3(mouseX, mouseY).ToString());
-
-		Debug.DrawRay(transform.position, m_Camera.transform.TransformDirection(Vector3.forward) + transform.TransformDirection(Vector3.forward), Color.red, 5);
-		if (Physics.Raycast(transform.position, m_Camera.transform.TransformDirection(Vector3.forward) + transform.TransformDirection(Vector3.forward), out RaycastHit hit))
-		{
-			if (hit.collider.gameObject.CompareTag(Konstanten.BoxTag))
-			{
-				Debug.Log("HitBox");
-			}
-			else
-			{
-				Debug.Log("NoBoxHit");
-			}
-		}
-		else
-		{
-			Debug.Log("NothingHit");
-		}
-		//GameObject spawnedCube = Instantiate(CubePrefab[ChoosenBox]);
-	}
-
-	private void OnChooseBox(InputValue value)
-	{
-		ChoosenBox = Mathf.FloorToInt(value.Get<float>());
-#warning ToDo: Change the UI (Which doesn't exist yet)
-
-	}
-
-
-	#endregion
-
 }

@@ -110,7 +110,7 @@
                     "id": "e6887a1c-82e8-4bfe-8ad3-534af20aa9a9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
@@ -339,6 +339,17 @@
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "Scale(factor=4)",
+                    "groups": "",
+                    "action": "ChooseBox",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a2b0ab1-4f8d-4b5d-a6c3-8ff505f7f961",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "Scale(factor=5)",
                     "groups": "",
                     "action": "ChooseBox",
                     "isComposite": false,

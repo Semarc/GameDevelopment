@@ -26,6 +26,8 @@ public class SceneManagerScript : MonoBehaviour
 	public void LoadMainMenu()
 	{
 		SceneManager.LoadSceneAsync(0);
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
 	}
 	public void LoadLevel(int levelNumber)
 	{
