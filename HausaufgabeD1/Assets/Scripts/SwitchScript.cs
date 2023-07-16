@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using System.Collections;
+
 public class SwitchScript : MonoBehaviour
 {
 	[SerializeField] GameObject SpawnedObject;
@@ -7,7 +9,7 @@ public class SwitchScript : MonoBehaviour
 
 	private void Awake()
 	{
-		SpawnedObject.SetActive(false);
+		LevelManager.Instance.AreasToBeDisabled.Add(SpawnedObject);
 	}
 	private void OnCollisionEnter(Collision collision)
 	{

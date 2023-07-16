@@ -14,7 +14,19 @@ public class PointsScript : MonoBehaviour
 
 	private void Awake()
 	{
-		transform.position = new Vector3(transform.position.x, PointHeight, transform.position.z);
+		transform.position = transform.position + Vector3.up * 1000;
+
+		if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo))
+		{
+			transform.position = hitInfo.point + Vector3.up * PointHeight;
+		}
+		else
+		{
+			transform.position = transform.position - Vector3.up * 1000;
+			Debug.LogWarning("Points without ground at " + transform.position);
+		}
+
+		//transform.position = new Vector3(transform.position.x, PointHeight, transform.position.z);
 		LevelManager.Instance.Points.Add(this);
 		LevelManager.Instance.UpdateText();
 		ExplosionParticles = GetComponentInChildren<ParticleSystem>();

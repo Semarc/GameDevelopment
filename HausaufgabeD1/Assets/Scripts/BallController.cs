@@ -28,6 +28,8 @@ public class BallController : MonoBehaviour
 
 	[SerializeField] private float CameraBackOffset;
 	[SerializeField] private float CameraHeight;
+	[SerializeField] private float CameraVerticalRotation;
+	[SerializeField] private Quaternion PlayerRotation = Quaternion.identity;
 	private ParticleSystem GroundParticles;
 
 
@@ -58,7 +60,7 @@ public class BallController : MonoBehaviour
 
 	private void OnMove(InputValue movementValue)
 	{
-		moveDirection = movementValue.Get<Vector3>().normalized;
+		moveDirection = PlayerRotation * movementValue.Get<Vector3>().normalized;
 		moving = moveDirection != Vector3.zero;
 	}
 	private void OnGodMode(InputValue godModeInputValue)
@@ -78,10 +80,10 @@ public class BallController : MonoBehaviour
 	{
 		if (jumpcount > Jumpcount.None && jumpValue.Get<float>() != 0)
 		{
-			AudioScript.Instance.PlayJumpSound();
 			Debug.Log("Jumped");
 			jump = true;
 			jumpcount--;
+			AudioScript.Instance.PlayJumpSound();
 		}
 	}
 
@@ -115,7 +117,7 @@ public class BallController : MonoBehaviour
 
 	private void Update()
 	{
-		cam.transform.SetPositionAndRotation(new Vector3(transform.position.x, CameraHeight, transform.position.z - CameraBackOffset), Quaternion.Euler(30, 0, 0));
+		cam.transform.SetPositionAndRotation(new Vector3(transform.position.x, CameraHeight, transform.position.z) - PlayerRotation * new Vector3(0, 0, CameraBackOffset), PlayerRotation * Quaternion.Euler(CameraVerticalRotation, 0, 0));
 
 		if (transform.position.y <= -20)
 		{

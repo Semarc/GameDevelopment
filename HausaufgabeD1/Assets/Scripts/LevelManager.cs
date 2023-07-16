@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class LevelManager : MonoBehaviour
 	public bool GoalUnlocked => Collected == Total;
 	public bool Victory { get; set; } = false;
 
+	public List<GameObject> AreasToBeDisabled = new List<GameObject>();
+
 	[SerializeField] private TMP_Text PointsText;
 
 
@@ -26,7 +29,7 @@ public class LevelManager : MonoBehaviour
 			Instance = this;
 			SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
 			UpdateText();
-			AudioScript.Instance.PlayMusic();
+			AudioScript.Instance?.PlayMusic();
 		}
 		else
 		{
@@ -48,5 +51,15 @@ public class LevelManager : MonoBehaviour
 	{
 		PointsText.text = $"{Collected}/{Total}";
 		PointsText.color = GoalUnlocked ? Color.green : Color.red;
+	}
+
+	private void Start()
+	{
+		Debug.Log("LevelManager Start");
+		foreach (var item in AreasToBeDisabled)
+		{
+			Debug.Log("Disabling " + item.name);
+			item.SetActive(false);
+		}
 	}
 }
