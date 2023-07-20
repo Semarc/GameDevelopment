@@ -7,9 +7,9 @@ public class AudioScript : MonoBehaviour
 
 	[SerializeField] AudioClip Flashlight;
 	[SerializeField] AudioClip Throw;
+	[SerializeField] AudioClip Select;
 
-	[SerializeField] AudioClip Music;
-	[SerializeField] AudioClip MainMenuMusic;
+	[SerializeField] AudioClip[] Music;
 
 	AudioSource player;
 	private void Awake()
@@ -36,14 +36,22 @@ public class AudioScript : MonoBehaviour
 	{
 		player.PlayOneShot(Flashlight);
 	}
-
-	public void PlayMusic()
+	public void PlaySelectSound()
 	{
-		PlayClip(Music);
+		player.PlayOneShot(Select);
+	}
+
+	public void PlayMusic(int index)
+	{
+		PlayClip(Music[index]);
+	}
+	public void PlayRandomMusic()
+	{
+		PlayClip(Music[Random.Range(1, Music.Length)]);
 	}
 	public void PlayMainMenuMusic()
 	{
-		PlayClip(MainMenuMusic);
+		PlayClip(Music[0]);
 	}
 	public void StopMusic()
 	{

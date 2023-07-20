@@ -31,6 +31,7 @@ public class SceneManagerScript : MonoBehaviour
 	}
 	public void LoadLevel(int levelNumber)
 	{
+		AudioScript.Instance.PlayRandomMusic();
 		SceneManager.LoadSceneAsync(levelNumber + 1);
 	}
 	public void ReloadScene()

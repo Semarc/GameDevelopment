@@ -15,6 +15,7 @@ public class MyPlayerController : MonoBehaviour
 	[SerializeField] private Material NightSkyBox;
 	[SerializeField] private Material DaySkyBox;
 	[SerializeField] private Light SpotLight;
+	[SerializeField] private Light DirectionalLight;
 
 	private const int CompanionCubeIndex = 4;
 
@@ -57,11 +58,13 @@ public class MyPlayerController : MonoBehaviour
 	private void OnDayTime(InputValue value)
 	{
 		Camera.main.GetComponent<Skybox>().material = DaySkyBox;
+		DirectionalLight.transform.rotation = Quaternion.Euler(50, -30, 0);
 	}
 
 	private void OnNightTime(InputValue value)
 	{
 		Camera.main.GetComponent<Skybox>().material = NightSkyBox;
+		DirectionalLight.transform.rotation = Quaternion.Euler(50 + 180, -30, 0);
 	}
 
 	private void OnThrowBall(InputValue value)
@@ -132,5 +135,10 @@ public class MyPlayerController : MonoBehaviour
 	private void Awake()
 	{
 		CubeSelectors[ChoosenBox].ImageEnabled = true;
+	}
+
+	private void Start()
+	{
+		OnDayTime(null);
 	}
 }
